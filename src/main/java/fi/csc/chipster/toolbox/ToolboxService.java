@@ -3,6 +3,7 @@ package fi.csc.chipster.toolbox;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
@@ -52,7 +53,6 @@ public class ToolboxService {
 	
 	private Logger logger = LogManager.getLogger();
 
-	@SuppressWarnings("unused")
 	private Config config;
 	private Toolbox toolbox;
 	private String url;
@@ -61,10 +61,12 @@ public class ToolboxService {
 
 	private ToolResource toolResource;
 	private ModuleResource moduleResource;
+	private File toolsBin;
 
 	public ToolboxService(Config config) throws IOException, URISyntaxException {
 		this.config = config;
-		this.url = config.getString(Config.KEY_TOOLBOX_BIND_URL);
+		this.url = config.getString(Config.KEY_TOOLBOX_BIND_URL);			
+		
 		initialise();
 	}
 
@@ -81,6 +83,12 @@ public class ToolboxService {
 	}
 
 	private void initialise() throws IOException, URISyntaxException {
+		
+		this.toolsBin = new File(config.getString(Config.KEY_TOOLS_BIN_PATH));
+		
+		if (!toolsBin.exists()) {
+			logger.warn("unable to fill tool parameters from files because tools-bin path " + toolsBin.getPath() + " doesn't exist");
+		}
 
 		// load toolbox
 		Toolbox newToolbox = loadToolbox();

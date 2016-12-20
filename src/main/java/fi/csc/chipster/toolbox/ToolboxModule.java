@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,8 +25,11 @@ import fi.csc.chipster.toolbox.toolpartsparser.ToolPartsParser;
 import fi.csc.chipster.util.StringUtils;
 import fi.csc.microarray.description.SADLDescription;
 import fi.csc.microarray.description.SADLDescription.Input;
+import fi.csc.microarray.description.SADLDescription.Name;
 import fi.csc.microarray.description.SADLDescription.Output;
+import fi.csc.microarray.description.SADLDescription.Parameter;
 import fi.csc.microarray.description.SADLParser.ParseException;
+import fi.csc.microarray.description.SADLSyntax.ParameterType;
 import fi.csc.microarray.messaging.message.ModuleDescriptionMessage;
 import fi.csc.microarray.messaging.message.ModuleDescriptionMessage.Category;
 import fi.csc.microarray.module.chipster.ChipsterSADLParser;
@@ -308,6 +312,18 @@ public class ToolboxModule {
 		    		continue;
 		    	}
 		    	
+		    	// generate genome lists
+		    	for (Parameter param : sadlDescription.getParameters()) {
+		    		if (param.getType() == ParameterType.ENUM) {
+
+		    			List<Name> options = Arrays.asList(param.getSelectionOptions());
+		    			param.setSelectionOptions(SADLReplacements.processNames(options));
+		    			
+		    			List<String> defaults = Arrays.asList(param.getDefaultValues());
+		    			param.setDefaultValues(SADLReplacements.processStrings(defaults));
+		    		}
+		    	}		    	
+		    	
 		    	// Register the tool, override existing
 		    	ToolboxTool toolboxTool = new ToolboxTool(toolId, sadlDescription, parsedScript.SADL, parsedScript.code, parsedScript.source, moduleDir.getFileName().toString(), runtimeName);
 		    	tools.put(toolId, toolboxTool);
@@ -345,7 +361,7 @@ public class ToolboxModule {
 		}
 
 	}
-
+	
 	public String getName() {
 		return this.moduleName;
 	}
