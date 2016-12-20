@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import fi.csc.microarray.description.SADLDescription.Name;
@@ -51,7 +52,7 @@ public class SADLReplacements {
 			
 		} else if (SYMLINK_TARGET.equals(tokens[0])) {			
 			try {
-				return Arrays.asList(new String[] {getSymlinkTarget(tokens[1])});
+				return Arrays.asList(new String[] {getSymlinkTarget(tokens[1], tokens[2])});
 			} catch (IOException e) {
 				logger.warn("failed to get the symlink target of " + tokens[1]);
 			} 
@@ -92,10 +93,12 @@ public class SADLReplacements {
 		return basenames;
 	}
 	
-	private static String getSymlinkTarget(String path) throws IOException {
+	private static String getSymlinkTarget(String path, String fileExtension) throws IOException {
 		Path symlink = new File(path).toPath();		
 		if (Files.isSymbolicLink(symlink)) {
-			return Files.readSymbolicLink(symlink).getFileName().toString();
+			String target = Files.readSymbolicLink(symlink).getFileName().toString();
+			target = StringUtils.removeEnd(target, fileExtension);
+			return target;
 		} else {
 			throw new IOException("not a symlink: " + path);
 		}		
