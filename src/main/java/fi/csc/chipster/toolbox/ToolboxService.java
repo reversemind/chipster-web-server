@@ -53,6 +53,7 @@ public class ToolboxService {
 	
 	private Logger logger = LogManager.getLogger();
 
+	@SuppressWarnings("unused")
 	private Config config;
 	private Toolbox toolbox;
 	private String url;
@@ -66,6 +67,7 @@ public class ToolboxService {
 	public ToolboxService(Config config) throws IOException, URISyntaxException {
 		this.config = config;
 		this.url = config.getString(Config.KEY_TOOLBOX_BIND_URL);			
+		this.toolsBin = new File(config.getString(Config.KEY_TOOLS_BIN_PATH));
 		
 		initialise();
 	}
@@ -77,15 +79,14 @@ public class ToolboxService {
 	 * @throws IOException
 	 * @throws URISyntaxException
 	 */
-	public ToolboxService(String url) throws IOException, URISyntaxException {
+	public ToolboxService(String url, String toolsBinPath) throws IOException, URISyntaxException {
 		this.url = url;
+		this.toolsBin = new File(toolsBinPath);
 		initialise();
 	}
 
 	private void initialise() throws IOException, URISyntaxException {
-		
-		this.toolsBin = new File(config.getString(Config.KEY_TOOLS_BIN_PATH));
-		
+				
 		if (!toolsBin.exists()) {
 			logger.warn("unable to fill tool parameters from files because tools-bin path " + toolsBin.getPath() + " doesn't exist");
 		}
@@ -110,7 +111,7 @@ public class ToolboxService {
 		
 		Toolbox box;
 		if (Files.isDirectory(foundPath)) {
-			box = new Toolbox(foundPath);
+			box = new Toolbox(foundPath, toolsBin);
 
 			Path tempDir = Files.createTempDirectory(TOOLS_DIR_NAME);
 			Path tempZipFile = tempDir.resolve(TOOLS_ZIP_NAME);
@@ -126,7 +127,7 @@ public class ToolboxService {
 		else {
 			FileSystem fs = FileSystems.newFileSystem(foundPath, null);
 			Path toolsPath = fs.getPath(TOOLS_DIR_NAME);
-			box = new Toolbox(toolsPath);
+			box = new Toolbox(toolsPath, toolsBin);
 
 			byte [] zipContents = Files.readAllBytes(foundPath);
 			box.setZipContents(zipContents);
