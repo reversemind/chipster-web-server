@@ -1,11 +1,14 @@
 import {RxHR} from "@akanass/rx-http-request";
 import {Observable} from "rxjs";
 import {Logger} from "./logger";
+import {Config} from "./config";
 var restify = require('restify');
 
 const logger = Logger.getLogger(__filename);
 
 export class RestClient {
+
+	static config = new Config();
 
 	static getDataset(sessionId, datasetId, token): Observable<any> {
 		return this.getSessionDbUri().mergeMap(sessionDbUri => {
@@ -37,7 +40,7 @@ export class RestClient {
 
 	static getServiceUri(serviceName) {
 
-		return RestClient.getJson('http://localhost:8003/services', null).map(services => {
+		return RestClient.getJson(RestClient.config.get(Config.KEY_URL_INT_SERVICE_LOCATOR) + '/services', null).map(services => {
 			let service = services.filter(service => service.role === serviceName)[0];
 			if (!service) {
 				Observable.throw(new restify.InternalServerError('service not found' + serviceName));

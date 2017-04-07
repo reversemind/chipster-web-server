@@ -33,7 +33,7 @@ public class AuthenticationResourceTest {
     	launcher = new TestServerLauncher(config);
         
         // client with authentication enabled, but each test will set the credentials later
-        target = AuthenticationClient.getClient(null, null, true).target(config.getString("authentication-service"));
+        target = AuthenticationClient.getClient(null, null, true).target(config.getInternalServiceUrls().get(Role.AUTHENTICATION_SERVICE));
     }
 
     @AfterClass
@@ -99,7 +99,7 @@ public class AuthenticationResourceTest {
 	}
     
     public static String postServerToken(WebTarget target) {
-    	return postToken(target, Config.USERNAME_SESSION_DB, Config.USERNAME_SESSION_DB);
+    	return postToken(target, Role.SESSION_DB, Role.SESSION_DB);
 	}
 
     public static UUID getToken(WebTarget target, String username, String password, String clientToken) {

@@ -1,9 +1,8 @@
 package fi.csc.chipster.auth.model;
 
-
 public class Role {
 	
-	// roles as String constants, because that's the only thing the RolesAllowed
+	// roles as String constants	because that's the only thing the RolesAllowed
 	// annotation accepts
 	
 	// special role for the first authentication step
@@ -22,4 +21,7 @@ public class Role {
 	public static final String ADMIN = "admin";
 	public static final String PROXY = "proxy";
 	public static final String SESSION_WORKER = "session-worker";
-}
+	public static final String TYPE_SERVICE = "type-service";
+	public static final String WEB_SERVER = "web-server";
+	public static final String PROXY_ADMIN = "proxy-admin";
+}	

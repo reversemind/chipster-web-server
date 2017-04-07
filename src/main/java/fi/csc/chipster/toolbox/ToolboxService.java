@@ -32,6 +32,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import fi.csc.chipster.auth.model.Role;
 import fi.csc.chipster.rest.Config;
 import fi.csc.chipster.rest.RestUtils;
 import fi.csc.chipster.toolbox.resource.ModuleResource;
@@ -66,7 +67,7 @@ public class ToolboxService {
 
 	public ToolboxService(Config config) throws IOException, URISyntaxException {
 		this.config = config;
-		this.url = config.getString(Config.KEY_TOOLBOX_BIND_URL);			
+		this.url = config.getBindUrl(Role.TOOLBOX);			
 		this.toolsBin = new File(config.getString(Config.KEY_TOOLS_BIN_PATH));
 		
 		initialise();

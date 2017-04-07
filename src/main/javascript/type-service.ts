@@ -1,7 +1,9 @@
 import {RestClient} from "./rest-client";
 import {Observable} from "rxjs";
 import {Logger} from "./logger";
-var restify = require('restify');
+import {Config} from "./config";
+const restify = require('restify');
+const url = require('url');
 
 const logger = Logger.getLogger(__filename);
 
@@ -61,6 +63,8 @@ class TypeService {
 	private tagIdMap = new Map<string, Tag>();
 	private cache = new Map<IdPair, string>();
 
+	private config = new Config();
+
 	constructor() {
 		this.init();
 
@@ -83,10 +87,12 @@ class TypeService {
 		server.use(restify.bodyParser({ mapParams: false }));
 
 		server.post('/typetags', this.respond.bind(this));
-		//server.head('/hello/:name', respond);
 
-		server.listen(8080, function() {
-			logger.info('%s listening at %s', server.name, server.url);
+		let bindUrlString = this.config.get(Config.KEY_URL_BIND_TYPE_SERVICE);
+		let bindUrl = url.parse(bindUrlString);
+
+		server.listen(bindUrl.port, bindUrl.hostname, () => {
+			logger.info('type-service listening at ' + bindUrlString);
 		});
 	}
 
@@ -198,7 +204,7 @@ class TypeService {
 			throw new restify.UnauthorizedError('username must be token');
 		}
 		if (req.authorization.basic.username !== 'token') {
-			throw new restify.UnauthorizedError('only basic authentication supported');
+			throw new restify.UnauthorizedError('only token authentication supported');
 		}
 
 		return req.authorization.basic.password;
