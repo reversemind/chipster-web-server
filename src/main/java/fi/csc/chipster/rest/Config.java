@@ -34,7 +34,7 @@ public class Config {
 	public static final String KEY_SESSION_DB_NAME = "session-db-name";
 	public static final String KEY_SESSION_DB_HIBERNATE_SCHEMA = "session-db-hibernate-schema";
 	
-	public static final String KEY_WEB_ROOT_PATH = "web-root-path";
+	public static final String KEY_WEB_SERVER_WEB_ROOT_PATH = "web-server-web-root-path";
 	
 	public static final String KEY_COMP_MAX_JOBS = "comp-max-jobs";
 	public static final String KEY_COMP_SCHEDULE_TIMEOUT = "comp-schedule-timeout";
@@ -45,12 +45,14 @@ public class Config {
 	public static final String KEY_COMP_MODULE_FILTER_NAME = "comp-module-filter-name";
 	public static final String KEY_COMP_MODULE_FILTER_MODE = "comp-module-filter-mode";
 	public static final String KEY_COMP_RESOURCE_MONITORING_INTERVAL = "comp-resource-monitoring-interval";
+	
 	public static final String KEY_SCHEDULER_WAIT_TIMEOUT = "scheduler-wait-timeout";
 	public static final String KEY_SCHEDULER_WAIT_RUNNABLE_TIMEOUT = "scheduler-wait-runnable-timeout";
 	public static final String KEY_SCHEDULER_SCHEDULE_TIMEOUT = "scheduler-schedule-timeout";
 	public static final String KEY_SCHEDULER_HEARTBEAT_LOST_TIMEOUT = "scheduler-heartbeat-lost-timeout";
-	public static final String KEY_SCHEDULER_JOB_TIMER_INTERVAL = "scheduler-job-timer-interval";	
-	public static final String KEY_TOOLS_BIN_PATH = "tools-bin-path";
+	public static final String KEY_SCHEDULER_JOB_TIMER_INTERVAL = "scheduler-job-timer-interval";
+	
+	public static final String KEY_TOOLBOX_TOOLS_BIN_PATH = "toolbox-tools-bin-path";
 
 	private static String confFilePath = getFromFile(DEFAULT_CONF_PATH, KEY_CONF_PATH);
 	

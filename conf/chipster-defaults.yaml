@@ -3,7 +3,6 @@ conf-path: conf/chipster.yaml
 # Service accounts
 # all config items starting with "service-password-" will be automatically authenticated as Role.SERVER 
 
-service-password-authentication-service: authentication-service
 service-password-session-db: session-db
 service-password-service-locator: service-locator
 service-password-scheduler: scheduler
@@ -17,8 +16,8 @@ service-password-proxy: proxy
 
 url-ext-web-server: http://{{public-ip}}:8000
 url-ext-proxy: http://{{public-ip}}:8001
-url-int-authentication-service: http://{{public-ip}}:8002
-url-ext-authentication-service: http://{{public-ip}}:8002
+url-int-auth: http://{{public-ip}}:8002
+url-ext-auth: http://{{public-ip}}:8002
 url-int-service-locator: http://{{public-ip}}:8003
 url-ext-service-locator: http://{{public-ip}}:8003 
 url-int-session-db: http://{{public-ip}}:8004
@@ -41,7 +40,7 @@ url-ext-type-service: http://{{public-ip}}:8010
 url-bind-web-server: http://{{bind-ip}}:8000
 url-bind-proxy: http://{{bind-ip}}:8001
 url-bind-proxy-admin: http://{{admin-bind-ip}}:9001
-url-bind-authentication-service: http://{{bind-ip}}:8002
+url-bind-auth: http://{{bind-ip}}:8002
 url-bind-service-locator: http://{{bind-ip}}:8003
 url-bind-session-db: http://{{bind-ip}}:8004
 url-bind-session-db-events: ws://{{bind-ip}}:8005
@@ -97,12 +96,12 @@ session-db-hibernate-schema: update
     
 # web-server
 
-web-root-path: ../chipster-web/
+web-server-web-root-path: ../chipster-web/
 
 
-# misc
+# toolbox
 
-tools-bin-path: /opt/chipster/tools
+toolbox-tools-bin-path: /opt/chipster/tools
 
 
 # variables

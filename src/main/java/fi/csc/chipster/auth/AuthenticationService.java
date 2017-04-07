@@ -68,7 +68,7 @@ public class AuthenticationService {
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
-    	URI baseUri = URI.create(this.config.getBindUrl(Role.AUTHENTICATION_SERVICE));
+    	URI baseUri = URI.create(this.config.getBindUrl(Role.AUTH));
         this.httpServer = GrizzlyHttpServerFactory.createHttpServer(baseUri, rc);
     }
 

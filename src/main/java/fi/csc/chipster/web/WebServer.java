@@ -51,7 +51,7 @@ public class WebServer {
         resourceHandler.setDirectoriesListed(true);
         resourceHandler.setWelcomeFiles(new String[]{ INDEX_HTML });
         
-        String rootPath = config.getString(Config.KEY_WEB_ROOT_PATH);
+        String rootPath = config.getString(Config.KEY_WEB_SERVER_WEB_ROOT_PATH);
         resourceHandler.setResourceBase(rootPath);
         
         File root = new File(rootPath);

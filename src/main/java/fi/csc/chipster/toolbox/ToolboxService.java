@@ -68,7 +68,7 @@ public class ToolboxService {
 	public ToolboxService(Config config) throws IOException, URISyntaxException {
 		this.config = config;
 		this.url = config.getBindUrl(Role.TOOLBOX);			
-		this.toolsBin = new File(config.getString(Config.KEY_TOOLS_BIN_PATH));
+		this.toolsBin = new File(config.getString(Config.KEY_TOOLBOX_TOOLS_BIN_PATH));
 		
 		initialise();
 	}

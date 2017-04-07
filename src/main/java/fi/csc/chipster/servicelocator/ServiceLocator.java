@@ -55,7 +55,7 @@ public class ServiceLocator {
     	
     	String username = Role.SERVICE_LOCATOR;
     	String password = config.getPassword(username);
-    	String authUri = this.config.getInternalServiceUrls().get(Role.AUTHENTICATION_SERVICE);
+    	String authUri = this.config.getInternalServiceUrls().get(Role.AUTH);
     	List<String> auths = Arrays.asList(authUri);    	
     	this.authService = new AuthenticationClient(auths, username, password);    
     	

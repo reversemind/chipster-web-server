@@ -51,8 +51,8 @@ public class TestServerLauncher {
 	
 	private String getTargetUri(String role) {
 
-		if (Role.AUTHENTICATION_SERVICE.equals(role)) {
-				return config.getInternalServiceUrls().get(Role.AUTHENTICATION_SERVICE);
+		if (Role.AUTH.equals(role)) {
+				return config.getInternalServiceUrls().get(Role.AUTH);
 		} 
 		if (Role.SERVICE_LOCATOR.equals(role)) {
 			return config.getInternalServiceUrls().get(Role.SERVICE_LOCATOR);

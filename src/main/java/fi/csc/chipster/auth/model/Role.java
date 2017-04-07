@@ -13,7 +13,7 @@ public class Role {
 	public static final String SCHEDULER = "scheduler";
 	public static final String COMP = "comp";
 	public static final String SERVER = "server";
-	public static final String AUTHENTICATION_SERVICE = "authentication-service";
+	public static final String AUTH = "auth";
 	public static final String UNAUTHENTICATED = "unauthenticated";
 	public static final String SERVICE_LOCATOR = "service-locator";
 	public static final String FILE_BROKER = "file-broker";
