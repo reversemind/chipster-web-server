@@ -115,7 +115,7 @@ public class FileServlet extends DefaultServlet implements SessionEventListener 
 		try {
 			dataset = getDataset(path.getSessionId(), path.getDatasetId(), userToken, false);
 		} catch (RestException e) {
-			// authentication errors throw javax.ws.rs exceptions, but this is something else
+			// authentication errors throw javax.ws.rs exceptions, but this is some other error
 			// and is converted to InternalServerException
 			throw new ServletException(e.getMessage());
 		}

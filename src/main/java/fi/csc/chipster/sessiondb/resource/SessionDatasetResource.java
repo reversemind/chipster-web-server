@@ -46,6 +46,8 @@ import fi.csc.chipster.sessiondb.model.SessionEvent.ResourceType;
 
 public class SessionDatasetResource {
 	
+	public static final String QUERY_PARAM_READ_WRITE = "read-write";
+
 	@SuppressWarnings("unused")
 	private static Logger logger = LogManager.getLogger();
 	
@@ -67,7 +69,7 @@ public class SessionDatasetResource {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Transaction
-    public Response get(@PathParam("id") UUID datasetId, @QueryParam("read-write") boolean requireReadWrite, @Context SecurityContext sc) {
+    public Response get(@PathParam("id") UUID datasetId, @QueryParam(QUERY_PARAM_READ_WRITE) boolean requireReadWrite, @Context SecurityContext sc) {
     	
     	
     	// checks authorization

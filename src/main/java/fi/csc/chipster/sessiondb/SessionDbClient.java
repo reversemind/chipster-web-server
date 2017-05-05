@@ -41,6 +41,7 @@ import fi.csc.chipster.sessiondb.model.Job;
 import fi.csc.chipster.sessiondb.model.Session;
 import fi.csc.chipster.sessiondb.model.SessionEvent;
 import fi.csc.chipster.sessiondb.model.TableStats;
+import fi.csc.chipster.sessiondb.resource.SessionDatasetResource;
 import fi.csc.microarray.exception.MicroarrayException;
 import fi.csc.microarray.messaging.JobState;
 
@@ -315,7 +316,7 @@ public class SessionDbClient {
 	public Dataset getDataset(UUID sessionId, UUID datasetId, boolean requireReadWrite) throws RestException {
 		WebTarget target = getDatasetTarget(sessionId, datasetId);
 		if (requireReadWrite) {
-			target.queryParam("read-write", requireReadWrite);
+			target.queryParam(SessionDatasetResource.QUERY_PARAM_READ_WRITE, requireReadWrite);
 		}
 		return get(target, Dataset.class);		
 	}

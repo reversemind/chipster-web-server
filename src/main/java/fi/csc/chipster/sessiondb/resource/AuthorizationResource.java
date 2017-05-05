@@ -7,14 +7,12 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.security.RolesAllowed;
-import javax.ws.rs.BadRequestException;
 import javax.ws.rs.ForbiddenException;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -84,63 +82,26 @@ public class AuthorizationResource {
 	
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed(Role.SESSION_DB)
     @Transaction
-    public Response get(@QueryParam("session-id") UUID sessionId, @QueryParam("dataset-id") UUID datasetId, @QueryParam("user-token") String userToken, @QueryParam("read-write") Boolean requireReadWrite, @Context SecurityContext sc) throws IOException {
-    	
+    public Response get() throws IOException {
     	// session db is allowed to get all
-    	if (sessionId == null && userToken == null && requireReadWrite == null) {
-    		if (sc.isUserInRole(Role.SESSION_DB)) {
-    			return getAuthorizations();
-    		}
-    	}
-    	
-    	// file broker is allowed to make specific queries
-    	if (!sc.isUserInRole(Role.FILE_BROKER)) {
-    		throw new ForbiddenException();
-    	}
-    	
-    	if (sessionId == null || userToken == null || requireReadWrite == null) {
-    		throw new BadRequestException("session-id, user-token or read-write query parameter is null");
-    	}
-    	
-    	// this query wouldn't be need, if it was possible to query Authorization
-    	// table directly with sesssionId
-    	Session session = getSession(sessionId);
-    	
-    	if (session == null) {
-    		throw new NotFoundException("session not found");
-    	}
-    	
-
-    	try {    		
-    		String username = tokenRequestFilter.tokenAuthentication(userToken).getName();
-    		Authorization authorization = getAuthorization(username, session, hibernate.session());
-    		
-    		if (authorization == null) {
-    			throw new NotFoundException("session not authorized for user " + username);
-    		}
-    		
-    		if (requireReadWrite && !authorization.isReadWrite()) {
-    			// not really 401 (Unauthorized) or 403 (Forbidden), because the server authenticated correctly and is authorized to do this
-    			throw new NotFoundException("no read-write authorization for user " + username);
-    		}
-    	} catch (ForbiddenException e) {
-    		// the auth service didn't accept the userToken
-    		// read request could be still accepted if the token is a DatasetToken
-    		if (!requireReadWrite) {
-    			datasetTokenTable.checkAuthorization(UUID.fromString(userToken), sessionId, datasetId);
-    		} else {
-    			throw e;
-    		}
-    	}    	    	    	
-    	 
-    	return Response.ok().build();    	
+    	return getAuthorizations();    	
     }
     
     public Authorization checkAuthorization(String username, UUID sessionId, boolean requireReadWrite) {
     	return checkAuthorization(username, sessionId, requireReadWrite, hibernate.session());
     }
     
+	/**
+	 * Check if username is authorized to access or modify the whole session
+	 * 
+	 * @param username
+	 * @param sessionId
+	 * @param requireReadWrite
+	 * @param hibernateSession
+	 * @return
+	 */
 	public Authorization checkAuthorization(String username, UUID sessionId, boolean requireReadWrite, org.hibernate.Session hibernateSession) {
 
 		if(username == null) {
@@ -286,6 +247,17 @@ public class AuthorizationResource {
 		}
 	}
 	
+	/**
+	 * Check that the username is authorized to access a specific dataset
+	 * 
+	 * There must be an Authorization for the user to the session and the dataset must be in that session.
+	 * 
+	 * @param username
+	 * @param sessionId
+	 * @param datasetId
+	 * @param requireReadWrite
+	 * @return
+	 */
 	public Dataset checkAuthorization(String username, UUID sessionId, UUID datasetId, boolean requireReadWrite) {
 		// check that the user has an Authorization to access the session
 		Authorization auth = checkAuthorization(username, sessionId, requireReadWrite);
