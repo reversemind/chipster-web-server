@@ -24,8 +24,9 @@ import fi.csc.chipster.proxy.model.Route;
  */
 @Singleton
 public class HttpProxyServlet extends ProxyServlet.Transparent {
-	
-	private final Logger logger = LogManager.getLogger();
+
+	// TODO replace on lombok
+//	private final Logger logger = LogManager.getLogger();
 	private ConnectionManager connectionManager;
 	
 	public HttpProxyServlet(ConnectionManager connectionManager) {
@@ -79,7 +80,7 @@ public class HttpProxyServlet extends ProxyServlet.Transparent {
         String rewritten =  super.rewriteTarget(request);
         
         StringBuffer original = request.getRequestURL();    		
-        logger.debug("proxy " + original  + " \t -> " + rewritten);
+//        logger.debug("proxy " + original  + " \t -> " + rewritten);
         return rewritten;
     }
 

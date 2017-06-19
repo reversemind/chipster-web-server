@@ -28,8 +28,9 @@ import fi.csc.chipster.proxy.model.Route;
  * @author klemela
  */
 public class WebSocketProxySocket extends WebSocketAdapter {
-	
-	public static final Logger logger = LogManager.getLogger();
+
+	// TODO replace on lombok
+//	public static final Logger logger = LogManager.getLogger();
 	
 	private Session socketSession;
 	private WebSocketProxyClient proxyClient;
@@ -53,7 +54,7 @@ public class WebSocketProxySocket extends WebSocketAdapter {
 		this.socketSession = sess;
 
 		String targetUri = getTargetUri(socketSession);    	        	
-		logger.debug("proxy " + socketSession.getUpgradeRequest().getRequestURI() + " \t -> " + targetUri);
+//		logger.debug("proxy " + socketSession.getUpgradeRequest().getRequestURI() + " \t -> " + targetUri);
 
 		connectToTarget(targetUri);			
 		
@@ -105,7 +106,7 @@ public class WebSocketProxySocket extends WebSocketAdapter {
 			// authentication error or bad request, no need to log
 			closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
 		} catch (IOException | URISyntaxException | InterruptedException e) {
-			logger.error("failed to connect to " + targetUri, e);
+//			logger.error("failed to connect to " + targetUri, e);
 			closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
 		}
 	}
@@ -136,7 +137,7 @@ public class WebSocketProxySocket extends WebSocketAdapter {
 		try {
 			socketSession.getRemote().sendString(message);
 		} catch (IOException e) {
-			logger.error("failed to send a message", e);
+//			logger.error("failed to send a message", e);
 			proxyClient.closeClientSession(WebSocketProxyServlet.toCloseReason(e));
 			closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
 		}

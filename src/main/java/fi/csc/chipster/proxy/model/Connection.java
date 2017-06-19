@@ -12,7 +12,8 @@ import org.apache.logging.log4j.Logger;
 public class Connection {
 	
 	@SuppressWarnings("unused")
-	private static final Logger logger = LogManager.getLogger();
+	// TODO replace on lombok
+//	private static final Logger logger = LogManager.getLogger();
 	
 	private Route route;
 	private String sourceAddress;

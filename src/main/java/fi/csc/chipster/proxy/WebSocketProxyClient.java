@@ -21,8 +21,9 @@ import org.apache.logging.log4j.Logger;
  *
  */
 public class WebSocketProxyClient extends Endpoint {
-	
-	private static final Logger logger = LogManager.getLogger();
+
+	// TODO replace on lombok
+//	private static final Logger logger = LogManager.getLogger();
 	
 	private WebSocketProxySocket proxySocket;
 	private Session clientSession;
@@ -65,7 +66,7 @@ public class WebSocketProxyClient extends Endpoint {
 		try {
 			clientSession.getBasicRemote().sendText(message);
 		} catch (IOException e) {
-			logger.error("failed to send a message to " + targetUri, e);
+//			logger.error("failed to send a message to " + targetUri, e);
 			proxySocket.closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
 			closeClientSession(WebSocketProxyServlet.toCloseReason(e));
 		}
@@ -77,7 +78,7 @@ public class WebSocketProxyClient extends Endpoint {
 				clientSession.close(closeReason);
 			}
 		} catch (IOException e) {
-			logger.error("failed to close the target websocket to " + targetUri, e);
+//			logger.error("failed to close the target websocket to " + targetUri, e);
 		}
 	}
 }

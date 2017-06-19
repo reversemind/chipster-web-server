@@ -49,8 +49,9 @@ import fi.csc.chipster.proxy.model.RouteStats;
  *
  */
 public class ProxyServer {
-		
-	private static final Logger logger = LogManager.getLogger();
+
+	// TODO replace on lombok
+//	private static final Logger logger = LogManager.getLogger();
 	
 	public static final String PREFIX = "prefix";
 	public static final String PROXY_TO = "proxyTo";
@@ -74,7 +75,7 @@ public class ProxyServer {
     	//proxy.addRoute("websocket-path-on-proxy", "http://websocket-server-host");
     	
     	proxy.startServer();
-    	logger.info("proxy up and running");
+//    	logger.info("proxy up and running");
     }
     
     public ProxyServer(URI baseUri) {
@@ -120,7 +121,7 @@ public class ProxyServer {
         try {        	        
 			jetty.start();
 		} catch (Exception e) {
-			logger.error("failed to start proxy", e);
+//			logger.error("failed to start proxy", e);
 		}
 	}
 	
@@ -128,7 +129,7 @@ public class ProxyServer {
 		try {
 			this.jetty.stop();
 		} catch (Exception e) {
-			logger.warn("failed to stop the proxy", e);
+//			logger.warn("failed to stop the proxy", e);
 		}
 	}
     
@@ -141,7 +142,7 @@ public class ProxyServer {
 	 */
 	public void addRoute(String proxyPath, String targetUri) throws URISyntaxException {
 	
-		logger.info("add route " + proxyPath + " -> " + targetUri);
+//		logger.info("add route " + proxyPath + " -> " + targetUri);
 		ServletHolder routeServlet;
 		String scheme = new URI(targetUri).getScheme().toLowerCase();
 		if ("ws".equals(scheme) || "wss".equals(scheme)) {		
@@ -187,7 +188,7 @@ public class ProxyServer {
 	}
 	
 	public void removeRoute(String proxyPath) {
-		logger.info("remove route " + proxyPath);
+//		logger.info("remove route " + proxyPath);
 		updateMapping(proxyPath, null);
 	}
 	
@@ -264,7 +265,7 @@ public class ProxyServer {
 		ServletMapping oldMapping = getServletMapping(proxyPath, mappings);
 		if (oldMapping != null) {
 			ServletHolder oldServlet = getServlet(proxyPath, mappings);
-			logger.info("old route " + proxyPath + " -> " + oldServlet.getInitParameter(PROXY_TO) + " will be removed later");
+//			logger.info("old route " + proxyPath + " -> " + oldServlet.getInitParameter(PROXY_TO) + " will be removed later");
 			// remove the servlet after all connections have closed
 			servletsToRemove.put(oldServlet, proxyPath);
 			mappings.remove(oldMapping);
@@ -306,7 +307,7 @@ public class ProxyServer {
 			String holderTargetURI = holder.getInitParameter(PROXY_TO);
 
 			if (!connectionManager.hasOpenConnections(new Route(holderProxyPath, holderTargetURI))) {
-				logger.info("remove unused route " + holderProxyPath + " -> " + holderTargetURI);
+//				logger.info("remove unused route " + holderProxyPath + " -> " + holderTargetURI);
 				removeServlet(holder);
 				holdersIter.remove();
 			}
