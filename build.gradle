@@ -120,7 +120,7 @@ dependencies {
     
     
     // old codebase
-    compile ":chipster:+"
+//    compile ":chipster:+"
  
     testCompile "junit:junit:4.+"
 }
