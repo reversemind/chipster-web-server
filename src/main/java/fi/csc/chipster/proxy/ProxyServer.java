@@ -69,8 +69,9 @@ public class ProxyServer {
     	ProxyServer proxy = new ProxyServer(new URI("http://127.0.0.1:8000"));
     	
     	// proxy requests from localhost:8000/test to chipster.csc.fi
-    	proxy.addRoute("test", "http://chipster.csc.fi");    	
-    	
+//    	proxy.addRoute("test", "http://chipster.csc.fi");
+    	proxy.addRoute("test", "http://localhost:8080");
+
     	// proxying websockets is as easy
     	//proxy.addRoute("websocket-path-on-proxy", "http://websocket-server-host");
     	

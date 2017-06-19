@@ -9,3 +9,7 @@ https://github.com/spring-guides/gs-messaging-stomp-websocket.git
 
 
 #### start application
+
+```bash
+>./gradlew clean bootRun
+```
