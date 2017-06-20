@@ -21,125 +21,121 @@ import fi.csc.chipster.proxy.model.Route;
 
 /**
  * WebSocket socket side
- * 
+ * <p>
  * Based on Jetty's own websocket API. The reasons explained in the WebSocketProxyServlet.
  * The servlet creates a new instance of this class for each connection.
- * 
+ *
  * @author klemela
  */
 public class WebSocketProxySocket extends WebSocketAdapter {
 
-	// TODO replace on lombok
+    // TODO replace on lombok
 //	public static final Logger logger = LogManager.getLogger();
-	
-	private Session socketSession;
-	private WebSocketProxyClient proxyClient;
-	private String prefix;
-	private String proxyTo;
 
-	private ConnectionManager connectionManager;
+    private Session socketSession;
+    private WebSocketProxyClient proxyClient;
+    private String prefix;
+    private String proxyTo;
 
-	private Connection connection;
+    private ConnectionManager connectionManager;
 
-	public WebSocketProxySocket(String prefix, String proxyTo, ConnectionManager connectionManager) {
-		this.prefix = prefix;
-		this.proxyTo = proxyTo;
-		this.connectionManager = connectionManager;
-	}
+    private Connection connection;
 
-	@Override
-	public void onWebSocketConnect(Session sess)
-	{
-		super.onWebSocketConnect(sess);
-		this.socketSession = sess;
+    public WebSocketProxySocket(String prefix, String proxyTo, ConnectionManager connectionManager) {
+        this.prefix = prefix;
+        this.proxyTo = proxyTo;
+        this.connectionManager = connectionManager;
+    }
 
-		String targetUri = getTargetUri(socketSession);    	        	
+    @Override
+    public void onWebSocketConnect(Session sess) {
+        super.onWebSocketConnect(sess);
+        this.socketSession = sess;
+
+        String targetUri = getTargetUri(socketSession);
 //		logger.debug("proxy " + socketSession.getUpgradeRequest().getRequestURI() + " \t -> " + targetUri);
 
-		connectToTarget(targetUri);			
-		
-		connection = new Connection();
-		connection.setSourceAddress(socketSession.getRemoteAddress().getHostString().toString());
-		connection.setRequestURI(socketSession.getUpgradeRequest().getRequestURI().toString());
-		connection.setRoute(new Route(prefix.substring(1), proxyTo));
-		connectionManager.addConnection(connection);
+        connectToTarget(targetUri);
 
-	}
+        connection = new Connection();
+        connection.setSourceAddress(socketSession.getRemoteAddress().getHostString().toString());
+        connection.setRequestURI(socketSession.getUpgradeRequest().getRequestURI().toString());
+        connection.setRoute(new Route(prefix.substring(1), proxyTo));
+        connectionManager.addConnection(connection);
 
-	@Override
-	public void onWebSocketText(String message)
-	{
-		super.onWebSocketText(message);
-		proxyClient.sendText(message);
-	}
+    }
 
-	@Override
-	public void onWebSocketClose(int statusCode, String reason)
-	{
-		super.onWebSocketClose(statusCode,reason);
-		proxyClient.closeClientSession(new CloseReason(CloseReason.CloseCodes.getCloseCode(statusCode), reason));
-		connectionManager.removeConnection(connection);
-	}
+    @Override
+    public void onWebSocketText(String message) {
+        super.onWebSocketText(message);
+        proxyClient.sendText(message);
+    }
 
-	@Override
-	public void onWebSocketError(Throwable cause)
-	{
-		super.onWebSocketError(cause);
-		proxyClient.closeClientSession(WebSocketProxyServlet.toCloseReason(cause));
-		connectionManager.removeConnection(connection);
-	}
-	
-	private void connectToTarget(String targetUri) {
+    @Override
+    public void onWebSocketClose(int statusCode, String reason) {
+        super.onWebSocketClose(statusCode, reason);
+        proxyClient.closeClientSession(new CloseReason(CloseReason.CloseCodes.getCloseCode(statusCode), reason));
+        connectionManager.removeConnection(connection);
+    }
 
-		CountDownLatch connectLatch = new CountDownLatch(1);
+    @Override
+    public void onWebSocketError(Throwable cause) {
+        super.onWebSocketError(cause);
+        proxyClient.closeClientSession(WebSocketProxyServlet.toCloseReason(cause));
+        connectionManager.removeConnection(connection);
+    }
 
-		this.proxyClient = new WebSocketProxyClient(this, connectLatch, targetUri);
+    private void connectToTarget(String targetUri) {
 
-		ClientEndpointConfig cec = ClientEndpointConfig.Builder.create().build();
-		ClientManager client = ClientManager.createClient();
-		try {
-			client.connectToServer(proxyClient, cec, new URI(targetUri));
+        CountDownLatch connectLatch = new CountDownLatch(1);
 
-			connectLatch.await();
-		
-		} catch (DeploymentException e) {
-			// authentication error or bad request, no need to log
-			closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
-		} catch (IOException | URISyntaxException | InterruptedException e) {
+        this.proxyClient = new WebSocketProxyClient(this, connectLatch, targetUri);
+
+        ClientEndpointConfig cec = ClientEndpointConfig.Builder.create().build();
+        ClientManager client = ClientManager.createClient();
+        try {
+            client.connectToServer(proxyClient, cec, new URI(targetUri));
+
+            connectLatch.await();
+
+        } catch (DeploymentException e) {
+            // authentication error or bad request, no need to log
+            closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
+        } catch (IOException | URISyntaxException | InterruptedException e) {
 //			logger.error("failed to connect to " + targetUri, e);
-			closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
-		}
-	}
+            closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
+        }
+    }
 
-	private String getTargetUri(Session sourceSession) {
+    private String getTargetUri(Session sourceSession) {
 
-		URI requestUri = sourceSession.getUpgradeRequest().getRequestURI();
-		String requestPath = requestUri.getPath();
-		
-		if (!requestPath.startsWith(prefix + "/")) {
-			throw new IllegalArgumentException("path " + requestPath + " doesn't start with prefix " + prefix);
-		} else {
-			requestPath = requestPath.replaceFirst(prefix + "/", "");
-		}
-		
-		UriBuilder targetUriBuilder = UriBuilder.fromUri(proxyTo);
-		targetUriBuilder.path(requestPath);
-		targetUriBuilder.replaceQuery(requestUri.getQuery());
-		
-		return targetUriBuilder.build().toString();
-	}
+        URI requestUri = sourceSession.getUpgradeRequest().getRequestURI();
+        String requestPath = requestUri.getPath();
 
-	public void closeSocketSession(CloseReason closeReason) {
-		socketSession.close(closeReason.getCloseCode().getCode(), closeReason.getReasonPhrase());
-	}
+        if (!requestPath.startsWith(prefix + "/")) {
+            throw new IllegalArgumentException("path " + requestPath + " doesn't start with prefix " + prefix);
+        } else {
+            requestPath = requestPath.replaceFirst(prefix + "/", "");
+        }
 
-	public void sendText(String message) {
-		try {
-			socketSession.getRemote().sendString(message);
-		} catch (IOException e) {
+        UriBuilder targetUriBuilder = UriBuilder.fromUri(proxyTo);
+        targetUriBuilder.path(requestPath);
+        targetUriBuilder.replaceQuery(requestUri.getQuery());
+
+        return targetUriBuilder.build().toString();
+    }
+
+    public void closeSocketSession(CloseReason closeReason) {
+        socketSession.close(closeReason.getCloseCode().getCode(), closeReason.getReasonPhrase());
+    }
+
+    public void sendText(String message) {
+        try {
+            socketSession.getRemote().sendString(message);
+        } catch (IOException e) {
 //			logger.error("failed to send a message", e);
-			proxyClient.closeClientSession(WebSocketProxyServlet.toCloseReason(e));
-			closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
-		}
-	}
+            proxyClient.closeClientSession(WebSocketProxyServlet.toCloseReason(e));
+            closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
+        }
+    }
 }
