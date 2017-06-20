@@ -71,10 +71,14 @@ public class ProxyServer {
     	// proxy requests from localhost:8000/test to chipster.csc.fi
 //    	proxy.addRoute("test", "http://chipster.csc.fi");
     	proxy.addRoute("test", "http://localhost:8080");
+    	proxy.addRoute("webjars", "http://localhost:8080/webjars");
+    	proxy.addRoute("app.js", "http://localhost:8080/app.js");
+    	proxy.addRoute("main.css", "http://localhost:8080/main.css");
 
     	// proxying websockets is as easy
 //    	proxy.addRoute("testws", "http://websocket-server-host");
-    	proxy.addRoute("testws", "ws://localhost:8080/gs-guide-websocket");
+    	proxy.addRoute("gs-guide-websocket/info", "http://localhost:8080/gs-guide-websocket");
+    	proxy.addRoute("gs-guide-websocket", "ws://localhost:8080/gs-guide-websocket");
 
     	proxy.startServer();
 //    	logger.info("proxy up and running");

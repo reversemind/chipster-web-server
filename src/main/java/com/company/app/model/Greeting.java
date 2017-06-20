@@ -1,4 +1,4 @@
-package com.company.app;
+package com.company.app.model;
 
 public class Greeting {
 

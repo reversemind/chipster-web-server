@@ -135,6 +135,10 @@ dependencies {
 //    compile 'javax.websocket:javax.websocket-api:1.1'
     compile 'org.projectlombok:lombok:1.16.16'
 
+
+    compile 'org.mitre.dsmiley.httpproxy:smiley-http-proxy-servlet:1.9'
+
+
     // Test
     testCompile "junit:junit:4.+"
 }

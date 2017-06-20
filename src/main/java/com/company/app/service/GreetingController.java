@@ -1,5 +1,7 @@
-package com.company.app;
+package com.company.app.service;
 
+import com.company.app.model.Greeting;
+import com.company.app.model.HelloMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
