@@ -65,12 +65,14 @@ public class ProxyServer {
 
     public static void main(String[] args) throws Exception {
 
+        // local test
+
         // bind to localhost port 8000
-        ProxyServer proxy = new ProxyServer(new URI("http://127.0.0.1:9000"));
+        ProxyServer proxy = new ProxyServer(new URI("http://127.0.0.1:9000/"));
 
         // proxy requests from localhost:8000/test to chipster.csc.fi
 //    	proxy.addRoute("test", "http://chipster.csc.fi");
-        proxy.addRoute("test", "http://localhost:8080");
+        proxy.addRoute("proxy", "http://localhost:8080");
         proxy.addRoute("webjars", "http://localhost:8080/webjars");
         proxy.addRoute("app.js", "http://localhost:8080/app.js");
         proxy.addRoute("main.css", "http://localhost:8080/main.css");

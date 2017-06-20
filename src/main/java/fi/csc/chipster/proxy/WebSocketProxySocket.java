@@ -68,7 +68,30 @@ public class WebSocketProxySocket extends WebSocketAdapter {
     @Override
     public void onWebSocketText(String message) {
         super.onWebSocketText(message);
+
+        System.out.println("\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+        System.out.println("message:" + message);
+
+        System.out.println("\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
         proxyClient.sendText(message);
+    }
+
+    @Override
+    public void onWebSocketBinary(byte[] arg0, int arg1, int arg2){
+        super.onWebSocketBinary(arg0, arg1, arg2);
+
+        System.out.println("\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+        System.out.println("length:" + arg0);
+        System.out.println("length:" + arg0.length);
+        System.out.println("arg1:" + arg1);
+        System.out.println("arg2:" + arg2);
+
+        System.out.println("\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+        proxyClient.sendText("");
     }
 
     @Override

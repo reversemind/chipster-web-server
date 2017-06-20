@@ -4,7 +4,6 @@ import javax.inject.Singleton;
 import javax.websocket.CloseReason;
 import javax.websocket.CloseReason.CloseCodes;
 
-import fi.csc.chipster.proxy.other.WebSocketProxyBinarySocket;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
