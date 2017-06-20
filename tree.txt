@@ -13,9 +13,6 @@ compile - Compile classpath for source set 'main'.
 |    \--- org.apache.logging.log4j:log4j-api:2.8.2
 +--- org.apache.logging.log4j:log4j-jul:+ -> 2.8.2
 |    \--- org.apache.logging.log4j:log4j-api:2.8.2
-+--- org.apache.logging.log4j:log4j-slf4j-impl:+ -> 2.8.2
-|    +--- org.slf4j:slf4j-api:1.7.24 -> 1.7.25
-|    \--- org.apache.logging.log4j:log4j-api:2.8.2
 +--- org.apache.logging.log4j:log4j-1.2-api:2.4.1
 |    +--- org.apache.logging.log4j:log4j-api:2.4.1 -> 2.8.2
 |    \--- org.apache.logging.log4j:log4j-core:2.4.1 -> 2.8.2 (*)
@@ -94,6 +91,44 @@ compile - Compile classpath for source set 'main'.
 |    +--- org.glassfish.jersey.core:jersey-server:2.26-b03 -> 2.25.1 (*)
 |    \--- javax.ws.rs:javax.ws.rs-api:2.1-m05
 +--- javax.websocket:javax.websocket-api:+ -> 1.1
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.+ -> 9.4.6.v20170531
+|    +--- org.eclipse.jetty:jetty-annotations:9.4.6.v20170531 -> 9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
+|    |    |    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
+|    |    |    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
+|    |    |    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    |    +--- javax.annotation:javax.annotation-api:1.2
+|    |    +--- org.ow2.asm:asm:5.1
+|    |    \--- org.ow2.asm:asm-commons:5.1
+|    |         \--- org.ow2.asm:asm-tree:5.1
+|    |              \--- org.ow2.asm:asm:5.1
+|    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.4.6.v20170531
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.6.v20170531 -> 9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    |    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.6.v20170531 -> 9.4.5.v20170502
+|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
+|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
+|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
 +--- org.glassfish.tyrus:tyrus-client:+ -> 1.13.1
 |    \--- org.glassfish.tyrus:tyrus-core:1.13.1
 |         \--- org.glassfish.tyrus:tyrus-spi:1.13.1
@@ -102,13 +137,11 @@ compile - Compile classpath for source set 'main'.
 |    +--- org.glassfish.grizzly:grizzly-framework:2.3.25 -> 2.3.28
 |    +--- org.glassfish.grizzly:grizzly-http-server:2.3.25 -> 2.3.28 (*)
 |    \--- org.glassfish.tyrus:tyrus-client:1.13.1 (*)
-+--- org.eclipse.jetty:jetty-jmx:9.2.+ -> 9.2.22.v20170606
-|    \--- org.eclipse.jetty:jetty-util:9.2.22.v20170606 -> 9.4.5.v20170502
-+--- org.eclipse.jetty:jetty-proxy:9.2.+ -> 9.2.22.v20170606
-|    +--- org.eclipse.jetty:jetty-util:9.2.22.v20170606 -> 9.4.5.v20170502
-|    \--- org.eclipse.jetty:jetty-client:9.2.22.v20170606 -> 9.4.5.v20170502
-|         +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
++--- org.eclipse.jetty:jetty-jmx:9.4.+ -> 9.4.6.v20170531
+|    \--- org.eclipse.jetty:jetty-util:9.4.6.v20170531 -> 9.4.5.v20170502
++--- org.eclipse.jetty:jetty-proxy:9.4.+ -> 9.4.6.v20170531
+|    +--- org.eclipse.jetty:jetty-util:9.4.6.v20170531 -> 9.4.5.v20170502
+|    \--- org.eclipse.jetty:jetty-client:9.4.6.v20170531 -> 9.4.5.v20170502 (*)
 +--- commons-io:commons-io:2.4
 +--- net.sourceforge.argparse4j:argparse4j:0.7.0
 +--- org.apache.commons:commons-lang3:3.4
@@ -173,44 +206,9 @@ compile - Compile classpath for source set 'main'.
 |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
 |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
 |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
-|    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
-|    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502 (*)
-|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
-|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
-|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 -> 9.2.22.v20170606
-|    |    +--- org.eclipse.jetty:jetty-annotations:9.2.22.v20170606 -> 9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
-|    |    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
-|    |    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    +--- javax.annotation:javax.annotation-api:1.2
-|    |    |    +--- org.ow2.asm:asm:5.1
-|    |    |    \--- org.ow2.asm:asm-commons:5.1
-|    |    |         \--- org.ow2.asm:asm-tree:5.1
-|    |    |              \--- org.ow2.asm:asm:5.1
-|    |    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.2.22.v20170606
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-client:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
-|    |    +--- org.eclipse.jetty.websocket:websocket-server:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 -> 9.4.6.v20170531 (*)
 |    \--- org.mortbay.jasper:apache-el:8.0.33
 +--- org.webjars:webjars-locator: -> 0.32-1
 |    +--- org.webjars:webjars-locator-core:0.32
@@ -224,7 +222,7 @@ compile - Compile classpath for source set 'main'.
 +--- org.webjars:bootstrap:3.3.7
 |    \--- org.webjars:jquery:1.11.1 -> 3.1.0
 +--- org.webjars:jquery:3.1.0
-+--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.22.v20170606 (*)
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4+ -> 9.4.6.v20170531 (*)
 \--- org.projectlombok:lombok:1.16.16
 
 default - Configuration for default artifacts.
@@ -233,9 +231,6 @@ default - Configuration for default artifacts.
 |    \--- org.apache.logging.log4j:log4j-api:2.7
 +--- org.apache.logging.log4j:log4j-jul:+ -> 2.7
 |    \--- org.apache.logging.log4j:log4j-api:2.7
-+--- org.apache.logging.log4j:log4j-slf4j-impl:+ -> 2.7
-|    +--- org.slf4j:slf4j-api:1.7.21 -> 1.7.25
-|    \--- org.apache.logging.log4j:log4j-api:2.7
 +--- org.apache.logging.log4j:log4j-1.2-api:2.4.1
 |    +--- org.apache.logging.log4j:log4j-api:2.4.1 -> 2.7
 |    \--- org.apache.logging.log4j:log4j-core:2.4.1 -> 2.7 (*)
@@ -314,6 +309,44 @@ default - Configuration for default artifacts.
 |    +--- org.glassfish.jersey.core:jersey-server:2.26-b03 -> 2.25.1 (*)
 |    \--- javax.ws.rs:javax.ws.rs-api:2.1-m05
 +--- javax.websocket:javax.websocket-api:+ -> 1.1
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.+ -> 9.4.5.v20170502
+|    +--- org.eclipse.jetty:jetty-annotations:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
+|    |    |    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
+|    |    |    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
+|    |    |    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    |    +--- javax.annotation:javax.annotation-api:1.2
+|    |    +--- org.ow2.asm:asm:5.1
+|    |    \--- org.ow2.asm:asm-commons:5.1
+|    |         \--- org.ow2.asm:asm-tree:5.1
+|    |              \--- org.ow2.asm:asm:5.1
+|    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    |    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
+|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
+|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
 +--- org.glassfish.tyrus:tyrus-client:+ -> 1.13.1
 |    \--- org.glassfish.tyrus:tyrus-core:1.13.1
 |         \--- org.glassfish.tyrus:tyrus-spi:1.13.1
@@ -322,13 +355,11 @@ default - Configuration for default artifacts.
 |    +--- org.glassfish.grizzly:grizzly-framework:2.3.25 -> 2.3.28
 |    +--- org.glassfish.grizzly:grizzly-http-server:2.3.25 -> 2.3.28 (*)
 |    \--- org.glassfish.tyrus:tyrus-client:1.13.1 (*)
-+--- org.eclipse.jetty:jetty-jmx:9.2.+ -> 9.4.5.v20170502
++--- org.eclipse.jetty:jetty-jmx:9.4.+ -> 9.4.5.v20170502
 |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-+--- org.eclipse.jetty:jetty-proxy:9.2.+ -> 9.4.5.v20170502
++--- org.eclipse.jetty:jetty-proxy:9.4.+ -> 9.4.5.v20170502
 |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    \--- org.eclipse.jetty:jetty-client:9.4.5.v20170502
-|         +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    \--- org.eclipse.jetty:jetty-client:9.4.5.v20170502 (*)
 +--- commons-io:commons-io:2.4
 +--- net.sourceforge.argparse4j:argparse4j:0.7.0
 +--- org.apache.commons:commons-lang3:3.4
@@ -393,44 +424,9 @@ default - Configuration for default artifacts.
 |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
 |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
 |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
-|    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
-|    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502 (*)
-|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
-|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
-|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 -> 9.2.22.v20170606
-|    |    +--- org.eclipse.jetty:jetty-annotations:9.2.22.v20170606 -> 9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
-|    |    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
-|    |    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    +--- javax.annotation:javax.annotation-api:1.2
-|    |    |    +--- org.ow2.asm:asm:5.1
-|    |    |    \--- org.ow2.asm:asm-commons:5.1
-|    |    |         \--- org.ow2.asm:asm-tree:5.1
-|    |    |              \--- org.ow2.asm:asm:5.1
-|    |    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.2.22.v20170606
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-client:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
-|    |    +--- org.eclipse.jetty.websocket:websocket-server:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 (*)
 |    \--- org.mortbay.jasper:apache-el:8.0.33
 +--- org.webjars:webjars-locator: -> 0.32-1
 |    +--- org.webjars:webjars-locator-core:0.32
@@ -444,7 +440,7 @@ default - Configuration for default artifacts.
 +--- org.webjars:bootstrap:3.3.7
 |    \--- org.webjars:jquery:1.11.1 -> 3.1.0
 +--- org.webjars:jquery:3.1.0
-+--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.22.v20170606 (*)
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4+ -> 9.4.5.v20170502 (*)
 \--- org.projectlombok:lombok:1.16.16
 
 runtime - Runtime classpath for source set 'main'.
@@ -453,9 +449,6 @@ runtime - Runtime classpath for source set 'main'.
 |    \--- org.apache.logging.log4j:log4j-api:2.7
 +--- org.apache.logging.log4j:log4j-jul:+ -> 2.7
 |    \--- org.apache.logging.log4j:log4j-api:2.7
-+--- org.apache.logging.log4j:log4j-slf4j-impl:+ -> 2.7
-|    +--- org.slf4j:slf4j-api:1.7.21 -> 1.7.25
-|    \--- org.apache.logging.log4j:log4j-api:2.7
 +--- org.apache.logging.log4j:log4j-1.2-api:2.4.1
 |    +--- org.apache.logging.log4j:log4j-api:2.4.1 -> 2.7
 |    \--- org.apache.logging.log4j:log4j-core:2.4.1 -> 2.7 (*)
@@ -534,6 +527,44 @@ runtime - Runtime classpath for source set 'main'.
 |    +--- org.glassfish.jersey.core:jersey-server:2.26-b03 -> 2.25.1 (*)
 |    \--- javax.ws.rs:javax.ws.rs-api:2.1-m05
 +--- javax.websocket:javax.websocket-api:+ -> 1.1
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.+ -> 9.4.5.v20170502
+|    +--- org.eclipse.jetty:jetty-annotations:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
+|    |    |    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
+|    |    |    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
+|    |    |    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    |    +--- javax.annotation:javax.annotation-api:1.2
+|    |    +--- org.ow2.asm:asm:5.1
+|    |    \--- org.ow2.asm:asm-commons:5.1
+|    |         \--- org.ow2.asm:asm-tree:5.1
+|    |              \--- org.ow2.asm:asm:5.1
+|    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    |    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
+|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
+|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
 +--- org.glassfish.tyrus:tyrus-client:+ -> 1.13.1
 |    \--- org.glassfish.tyrus:tyrus-core:1.13.1
 |         \--- org.glassfish.tyrus:tyrus-spi:1.13.1
@@ -542,13 +573,11 @@ runtime - Runtime classpath for source set 'main'.
 |    +--- org.glassfish.grizzly:grizzly-framework:2.3.25 -> 2.3.28
 |    +--- org.glassfish.grizzly:grizzly-http-server:2.3.25 -> 2.3.28 (*)
 |    \--- org.glassfish.tyrus:tyrus-client:1.13.1 (*)
-+--- org.eclipse.jetty:jetty-jmx:9.2.+ -> 9.4.5.v20170502
++--- org.eclipse.jetty:jetty-jmx:9.4.+ -> 9.4.5.v20170502
 |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-+--- org.eclipse.jetty:jetty-proxy:9.2.+ -> 9.4.5.v20170502
++--- org.eclipse.jetty:jetty-proxy:9.4.+ -> 9.4.5.v20170502
 |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    \--- org.eclipse.jetty:jetty-client:9.4.5.v20170502
-|         +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    \--- org.eclipse.jetty:jetty-client:9.4.5.v20170502 (*)
 +--- commons-io:commons-io:2.4
 +--- net.sourceforge.argparse4j:argparse4j:0.7.0
 +--- org.apache.commons:commons-lang3:3.4
@@ -613,44 +642,9 @@ runtime - Runtime classpath for source set 'main'.
 |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
 |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
 |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
-|    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
-|    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502 (*)
-|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
-|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
-|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 -> 9.2.22.v20170606
-|    |    +--- org.eclipse.jetty:jetty-annotations:9.2.22.v20170606 -> 9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
-|    |    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
-|    |    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    +--- javax.annotation:javax.annotation-api:1.2
-|    |    |    +--- org.ow2.asm:asm:5.1
-|    |    |    \--- org.ow2.asm:asm-commons:5.1
-|    |    |         \--- org.ow2.asm:asm-tree:5.1
-|    |    |              \--- org.ow2.asm:asm:5.1
-|    |    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.2.22.v20170606
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-client:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
-|    |    +--- org.eclipse.jetty.websocket:websocket-server:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 (*)
 |    \--- org.mortbay.jasper:apache-el:8.0.33
 +--- org.webjars:webjars-locator: -> 0.32-1
 |    +--- org.webjars:webjars-locator-core:0.32
@@ -664,7 +658,7 @@ runtime - Runtime classpath for source set 'main'.
 +--- org.webjars:bootstrap:3.3.7
 |    \--- org.webjars:jquery:1.11.1 -> 3.1.0
 +--- org.webjars:jquery:3.1.0
-+--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.22.v20170606 (*)
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4+ -> 9.4.5.v20170502 (*)
 \--- org.projectlombok:lombok:1.16.16
 
 testCompile - Compile classpath for source set 'test'.
@@ -673,9 +667,6 @@ testCompile - Compile classpath for source set 'test'.
 |    \--- org.apache.logging.log4j:log4j-api:2.7
 +--- org.apache.logging.log4j:log4j-jul:+ -> 2.7
 |    \--- org.apache.logging.log4j:log4j-api:2.7
-+--- org.apache.logging.log4j:log4j-slf4j-impl:+ -> 2.7
-|    +--- org.slf4j:slf4j-api:1.7.21 -> 1.7.25
-|    \--- org.apache.logging.log4j:log4j-api:2.7
 +--- org.apache.logging.log4j:log4j-1.2-api:2.4.1
 |    +--- org.apache.logging.log4j:log4j-api:2.4.1 -> 2.7
 |    \--- org.apache.logging.log4j:log4j-core:2.4.1 -> 2.7 (*)
@@ -754,6 +745,44 @@ testCompile - Compile classpath for source set 'test'.
 |    +--- org.glassfish.jersey.core:jersey-server:2.26-b03 -> 2.25.1 (*)
 |    \--- javax.ws.rs:javax.ws.rs-api:2.1-m05
 +--- javax.websocket:javax.websocket-api:+ -> 1.1
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.+ -> 9.4.5.v20170502
+|    +--- org.eclipse.jetty:jetty-annotations:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
+|    |    |    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
+|    |    |    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
+|    |    |    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    |    +--- javax.annotation:javax.annotation-api:1.2
+|    |    +--- org.ow2.asm:asm:5.1
+|    |    \--- org.ow2.asm:asm-commons:5.1
+|    |         \--- org.ow2.asm:asm-tree:5.1
+|    |              \--- org.ow2.asm:asm:5.1
+|    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    |    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
+|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
+|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
 +--- org.glassfish.tyrus:tyrus-client:+ -> 1.13.1
 |    \--- org.glassfish.tyrus:tyrus-core:1.13.1
 |         \--- org.glassfish.tyrus:tyrus-spi:1.13.1
@@ -762,13 +791,11 @@ testCompile - Compile classpath for source set 'test'.
 |    +--- org.glassfish.grizzly:grizzly-framework:2.3.25 -> 2.3.28
 |    +--- org.glassfish.grizzly:grizzly-http-server:2.3.25 -> 2.3.28 (*)
 |    \--- org.glassfish.tyrus:tyrus-client:1.13.1 (*)
-+--- org.eclipse.jetty:jetty-jmx:9.2.+ -> 9.4.5.v20170502
++--- org.eclipse.jetty:jetty-jmx:9.4.+ -> 9.4.5.v20170502
 |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-+--- org.eclipse.jetty:jetty-proxy:9.2.+ -> 9.4.5.v20170502
++--- org.eclipse.jetty:jetty-proxy:9.4.+ -> 9.4.5.v20170502
 |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    \--- org.eclipse.jetty:jetty-client:9.4.5.v20170502
-|         +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    \--- org.eclipse.jetty:jetty-client:9.4.5.v20170502 (*)
 +--- commons-io:commons-io:2.4
 +--- net.sourceforge.argparse4j:argparse4j:0.7.0
 +--- org.apache.commons:commons-lang3:3.4
@@ -833,44 +860,9 @@ testCompile - Compile classpath for source set 'test'.
 |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
 |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
 |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
-|    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
-|    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502 (*)
-|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
-|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
-|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 -> 9.2.22.v20170606
-|    |    +--- org.eclipse.jetty:jetty-annotations:9.2.22.v20170606 -> 9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
-|    |    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
-|    |    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    +--- javax.annotation:javax.annotation-api:1.2
-|    |    |    +--- org.ow2.asm:asm:5.1
-|    |    |    \--- org.ow2.asm:asm-commons:5.1
-|    |    |         \--- org.ow2.asm:asm-tree:5.1
-|    |    |              \--- org.ow2.asm:asm:5.1
-|    |    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.2.22.v20170606
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-client:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
-|    |    +--- org.eclipse.jetty.websocket:websocket-server:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 (*)
 |    \--- org.mortbay.jasper:apache-el:8.0.33
 +--- org.webjars:webjars-locator: -> 0.32-1
 |    +--- org.webjars:webjars-locator-core:0.32
@@ -884,7 +876,7 @@ testCompile - Compile classpath for source set 'test'.
 +--- org.webjars:bootstrap:3.3.7
 |    \--- org.webjars:jquery:1.11.1 -> 3.1.0
 +--- org.webjars:jquery:3.1.0
-+--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.22.v20170606 (*)
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4+ -> 9.4.5.v20170502 (*)
 +--- org.projectlombok:lombok:1.16.16
 \--- junit:junit:4.+ -> 4.12
      \--- org.hamcrest:hamcrest-core:1.3
@@ -895,9 +887,6 @@ testRuntime - Runtime classpath for source set 'test'.
 |    \--- org.apache.logging.log4j:log4j-api:2.7
 +--- org.apache.logging.log4j:log4j-jul:+ -> 2.7
 |    \--- org.apache.logging.log4j:log4j-api:2.7
-+--- org.apache.logging.log4j:log4j-slf4j-impl:+ -> 2.7
-|    +--- org.slf4j:slf4j-api:1.7.21 -> 1.7.25
-|    \--- org.apache.logging.log4j:log4j-api:2.7
 +--- org.apache.logging.log4j:log4j-1.2-api:2.4.1
 |    +--- org.apache.logging.log4j:log4j-api:2.4.1 -> 2.7
 |    \--- org.apache.logging.log4j:log4j-core:2.4.1 -> 2.7 (*)
@@ -976,6 +965,44 @@ testRuntime - Runtime classpath for source set 'test'.
 |    +--- org.glassfish.jersey.core:jersey-server:2.26-b03 -> 2.25.1 (*)
 |    \--- javax.ws.rs:javax.ws.rs-api:2.1-m05
 +--- javax.websocket:javax.websocket-api:+ -> 1.1
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.+ -> 9.4.5.v20170502
+|    +--- org.eclipse.jetty:jetty-annotations:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
+|    |    |    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
+|    |    |    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
+|    |    |    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    |    +--- javax.annotation:javax.annotation-api:1.2
+|    |    +--- org.ow2.asm:asm:5.1
+|    |    \--- org.ow2.asm:asm-commons:5.1
+|    |         \--- org.ow2.asm:asm-tree:5.1
+|    |              \--- org.ow2.asm:asm:5.1
+|    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502
+|    |    |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    |    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |         +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
+|    |    |         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502
+|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502 (*)
+|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
+|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
+|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
+|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
+|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
+|    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
 +--- org.glassfish.tyrus:tyrus-client:+ -> 1.13.1
 |    \--- org.glassfish.tyrus:tyrus-core:1.13.1
 |         \--- org.glassfish.tyrus:tyrus-spi:1.13.1
@@ -984,13 +1011,11 @@ testRuntime - Runtime classpath for source set 'test'.
 |    +--- org.glassfish.grizzly:grizzly-framework:2.3.25 -> 2.3.28
 |    +--- org.glassfish.grizzly:grizzly-http-server:2.3.25 -> 2.3.28 (*)
 |    \--- org.glassfish.tyrus:tyrus-client:1.13.1 (*)
-+--- org.eclipse.jetty:jetty-jmx:9.2.+ -> 9.4.5.v20170502
++--- org.eclipse.jetty:jetty-jmx:9.4.+ -> 9.4.5.v20170502
 |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-+--- org.eclipse.jetty:jetty-proxy:9.2.+ -> 9.4.5.v20170502
++--- org.eclipse.jetty:jetty-proxy:9.4.+ -> 9.4.5.v20170502
 |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    \--- org.eclipse.jetty:jetty-client:9.4.5.v20170502
-|         +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|         \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
+|    \--- org.eclipse.jetty:jetty-client:9.4.5.v20170502 (*)
 +--- commons-io:commons-io:2.4
 +--- net.sourceforge.argparse4j:argparse4j:0.7.0
 +--- org.apache.commons:commons-lang3:3.4
@@ -1055,44 +1080,9 @@ testRuntime - Runtime classpath for source set 'test'.
 |    |    +--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
 |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
 |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty:jetty-xml:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    \--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502
-|    |         \--- org.eclipse.jetty:jetty-security:9.4.5.v20170502
-|    |              \--- org.eclipse.jetty:jetty-server:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502
-|    |    +--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    \--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-client:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-io:9.4.5.v20170502 (*)
-|    |    |    +--- org.eclipse.jetty:jetty-client:9.4.5.v20170502 (*)
-|    |    |    \--- org.eclipse.jetty.websocket:websocket-common:9.4.5.v20170502 (*)
-|    |    +--- org.eclipse.jetty.websocket:websocket-servlet:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-api:9.4.5.v20170502
-|    |    |    \--- javax.servlet:javax.servlet-api:3.1.0
-|    |    +--- org.eclipse.jetty:jetty-servlet:9.4.5.v20170502 (*)
-|    |    \--- org.eclipse.jetty:jetty-http:9.4.5.v20170502 (*)
-|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 -> 9.2.22.v20170606
-|    |    +--- org.eclipse.jetty:jetty-annotations:9.2.22.v20170606 -> 9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-plus:9.4.5.v20170502
-|    |    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    |    \--- org.eclipse.jetty:jetty-jndi:9.4.5.v20170502
-|    |    |    |         \--- org.eclipse.jetty:jetty-util:9.4.5.v20170502
-|    |    |    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
-|    |    |    +--- javax.annotation:javax.annotation-api:1.2
-|    |    |    +--- org.ow2.asm:asm:5.1
-|    |    |    \--- org.ow2.asm:asm-commons:5.1
-|    |    |         \--- org.ow2.asm:asm-tree:5.1
-|    |    |              \--- org.ow2.asm:asm:5.1
-|    |    +--- org.eclipse.jetty.websocket:javax-websocket-client-impl:9.2.22.v20170606
-|    |    |    +--- org.eclipse.jetty.websocket:websocket-client:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
-|    |    +--- org.eclipse.jetty.websocket:websocket-server:9.2.22.v20170606 -> 9.4.5.v20170502 (*)
-|    |    \--- javax.websocket:javax.websocket-api:1.0 -> 1.1
+|    +--- org.eclipse.jetty:jetty-webapp:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:websocket-server:9.4.5.v20170502 (*)
+|    +--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4.5.v20170502 (*)
 |    \--- org.mortbay.jasper:apache-el:8.0.33
 +--- org.webjars:webjars-locator: -> 0.32-1
 |    +--- org.webjars:webjars-locator-core:0.32
@@ -1106,7 +1096,7 @@ testRuntime - Runtime classpath for source set 'test'.
 +--- org.webjars:bootstrap:3.3.7
 |    \--- org.webjars:jquery:1.11.1 -> 3.1.0
 +--- org.webjars:jquery:3.1.0
-+--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.2.22.v20170606 (*)
++--- org.eclipse.jetty.websocket:javax-websocket-server-impl:9.4+ -> 9.4.5.v20170502 (*)
 +--- org.projectlombok:lombok:1.16.16
 \--- junit:junit:4.+ -> 4.12
      \--- org.hamcrest:hamcrest-core:1.3
@@ -1115,4 +1105,4 @@ testRuntime - Runtime classpath for source set 'test'.
 
 BUILD SUCCESSFUL
 
-Total time: 5.662 secs
+Total time: 5.215 secs
