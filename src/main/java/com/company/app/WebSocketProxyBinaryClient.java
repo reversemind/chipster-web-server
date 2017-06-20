@@ -5,6 +5,7 @@ import fi.csc.chipster.proxy.WebSocketProxySocket;
 
 import javax.websocket.*;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -61,9 +62,20 @@ public class WebSocketProxyBinaryClient extends Endpoint {
         }
     }
 
-    public void sendBinary(byte[] arg0, int a1, int a2){
+    /**
+     * A WebSocket binary frame has been received.
+     *
+     * @param payload
+     *            the raw payload array received
+     * @param offset
+     *            the offset in the payload array where the data starts
+     * @param len
+     *            the length of bytes in the payload
+     */
+//    void onWebSocketBinary(byte payload[], int offset, int len);
+    public void sendBinary(byte[] arg0, int start, int byteCount){
         try {
-            clientSession.getBasicRemote().sendText(null);
+            clientSession.getBasicRemote().sendBinary(ByteBuffer.wrap(arg0, start, byteCount));
         } catch (IOException e) {
 //			logger.error("failed to send a message to " + targetUri, e);
             proxySocket.closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
