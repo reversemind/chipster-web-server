@@ -2,6 +2,7 @@ package com.company.app.config;
 
 import fi.csc.chipster.proxy.ConnectionManager;
 import fi.csc.chipster.proxy.HttpProxyServlet;
+import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
@@ -43,5 +44,17 @@ public class ProxyServletConfig implements EnvironmentAware {
 ////        servletRegistrationBean.addInitParameter(ProxyServlet.P_LOG, propertyResolver.getProperty("logging_enabled", "true"));
 //        return servletRegistrationBean;
 //    }
+
+
+    @Bean
+    public JettyEmbeddedServletContainerFactory jettyEmbeddedServletContainerFactory() {
+        JettyEmbeddedServletContainerFactory jettyContainer =
+                new JettyEmbeddedServletContainerFactory();
+
+        jettyContainer.setPort(8080);
+        jettyContainer.setContextPath("/");
+//        jettyContainer.getEmbeddedServletContainer();
+        return jettyContainer;
+    }
 
 }

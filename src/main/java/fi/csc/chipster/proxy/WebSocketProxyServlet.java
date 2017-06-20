@@ -38,7 +38,13 @@ public class WebSocketProxyServlet extends WebSocketServlet {
         factory.setCreator(new WebSocketCreator() {
 
             @Override
-            public Object createWebSocket(ServletUpgradeRequest req, ServletUpgradeResponse resp) {
+            public Object createWebSocket(ServletUpgradeRequest request, ServletUpgradeResponse response) {
+
+                System.out.println("\n\n===================================");
+                System.out.println("headers:" + request.getHeaders());
+                System.out.println("protocols:" + request.getSubProtocols());
+                System.out.println("\n\n===================================");
+
                 // this will create a new instance for each connection
                 return new WebSocketProxySocket(prefix, proxyTo, connectionManager);
             }
