@@ -46,15 +46,15 @@ public class ProxyServletConfig implements EnvironmentAware {
 //    }
 
 
-    @Bean
-    public JettyEmbeddedServletContainerFactory jettyEmbeddedServletContainerFactory() {
-        JettyEmbeddedServletContainerFactory jettyContainer =
-                new JettyEmbeddedServletContainerFactory();
-
-        jettyContainer.setPort(8080);
-        jettyContainer.setContextPath("/");
-//        jettyContainer.getEmbeddedServletContainer();
-        return jettyContainer;
-    }
+//    @Bean
+//    public JettyEmbeddedServletContainerFactory jettyEmbeddedServletContainerFactory() {
+//        JettyEmbeddedServletContainerFactory jettyContainer =
+//                new JettyEmbeddedServletContainerFactory();
+//
+//        jettyContainer.setPort(8080);
+//        jettyContainer.setContextPath("/");
+////        jettyContainer.getEmbeddedServletContainer();
+//        return jettyContainer;
+//    }
 
 }

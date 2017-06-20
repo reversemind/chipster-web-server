@@ -1,39 +1,34 @@
-package fi.csc.chipster.proxy;
+package com.company.app;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.concurrent.CountDownLatch;
+import fi.csc.chipster.proxy.ConnectionManager;
+import fi.csc.chipster.proxy.WebSocketProxyClient;
+import fi.csc.chipster.proxy.WebSocketProxyServlet;
+import fi.csc.chipster.proxy.WebSocketProxySocket;
+import fi.csc.chipster.proxy.model.Connection;
+import fi.csc.chipster.proxy.model.Route;
+import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.WebSocketAdapter;
+import org.glassfish.tyrus.client.ClientManager;
 
 import javax.websocket.ClientEndpointConfig;
 import javax.websocket.CloseReason;
 import javax.websocket.DeploymentException;
 import javax.ws.rs.core.UriBuilder;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.eclipse.jetty.websocket.api.Session;
-import org.eclipse.jetty.websocket.api.WebSocketAdapter;
-import org.glassfish.tyrus.client.ClientManager;
-
-import fi.csc.chipster.proxy.model.Connection;
-import fi.csc.chipster.proxy.model.Route;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.concurrent.CountDownLatch;
 
 /**
- * WebSocket socket side
- * <p>
- * Based on Jetty's own websocket API. The reasons explained in the WebSocketProxyServlet.
- * The servlet creates a new instance of this class for each connection.
  *
- * @author klemela
  */
-public class WebSocketProxySocket extends WebSocketAdapter {
+public class WebSocketProxyBinarySocket extends WebSocketAdapter {
 
     // TODO replace on lombok
 //	public static final Logger logger = LogManager.getLogger();
 
     private Session socketSession;
-    protected WebSocketProxyClient proxyClient;
+    protected WebSocketProxyBinaryClient proxyClient;
     private String prefix;
     private String proxyTo;
 
@@ -41,7 +36,7 @@ public class WebSocketProxySocket extends WebSocketAdapter {
 
     private Connection connection;
 
-    public WebSocketProxySocket(String prefix, String proxyTo, ConnectionManager connectionManager) {
+    public WebSocketProxyBinarySocket(String prefix, String proxyTo, ConnectionManager connectionManager) {
         this.prefix = prefix;
         this.proxyTo = proxyTo;
         this.connectionManager = connectionManager;
@@ -66,20 +61,6 @@ public class WebSocketProxySocket extends WebSocketAdapter {
     }
 
     @Override
-    public void onWebSocketText(String message) {
-        super.onWebSocketText(message);
-
-        System.out.println("\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-
-        System.out.println("message:" + message);
-
-        System.out.println("\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-
-        proxyClient.sendText(message);
-    }
-
-
-    @Override
     public void onWebSocketClose(int statusCode, String reason) {
         super.onWebSocketClose(statusCode, reason);
         proxyClient.closeClientSession(new CloseReason(CloseReason.CloseCodes.getCloseCode(statusCode), reason));
@@ -97,7 +78,7 @@ public class WebSocketProxySocket extends WebSocketAdapter {
 
         CountDownLatch connectLatch = new CountDownLatch(1);
 
-        this.proxyClient = new WebSocketProxyClient(this, connectLatch, targetUri);
+        this.proxyClient = new WebSocketProxyBinaryClient(this, connectLatch, targetUri);
 
         ClientEndpointConfig cec = ClientEndpointConfig.Builder.create().build();
         ClientManager client = ClientManager.createClient();
@@ -145,5 +126,32 @@ public class WebSocketProxySocket extends WebSocketAdapter {
             proxyClient.closeClientSession(WebSocketProxyServlet.toCloseReason(e));
             closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
         }
+    }
+
+    /**
+     * A WebSocket binary frame has been received.
+     *
+     * @param payload
+     *            the raw payload array received
+     * @param offset
+     *            the offset in the payload array where the data starts
+     * @param len
+     *            the length of bytes in the payload
+     */
+//    void onWebSocketBinary(byte payload[], int offset, int len);
+    @Override
+    public void onWebSocketBinary(byte[] arg0, int arg1, int arg2){
+        super.onWebSocketBinary(arg0, arg1, arg2);
+
+        System.out.println("\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+        System.out.println("length:" + arg0);
+        System.out.println("length:" + arg0.length);
+        System.out.println("arg1:" + arg1);
+        System.out.println("arg2:" + arg2);
+
+        System.out.println("\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+        proxyClient.sendBinary(arg0, arg1, arg2);
     }
 }

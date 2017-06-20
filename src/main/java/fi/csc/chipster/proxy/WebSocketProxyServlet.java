@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 import javax.websocket.CloseReason;
 import javax.websocket.CloseReason.CloseCodes;
 
+import com.company.app.WebSocketProxyBinarySocket;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
@@ -45,8 +46,24 @@ public class WebSocketProxyServlet extends WebSocketServlet {
                 System.out.println("protocols:" + request.getSubProtocols());
                 System.out.println("\n\n===================================");
 
-                // this will create a new instance for each connection
-                return new WebSocketProxySocket(prefix, proxyTo, connectionManager);
+                for (String subprotocol : request.getSubProtocols()) {
+                    if ("binary".equals(subprotocol)) {
+                        response.setAcceptedSubProtocol(subprotocol);
+                        // this will create a new instance for each connection
+                        return new WebSocketProxyBinarySocket(prefix, proxyTo, connectionManager);
+//                        return binaryEcho;
+                    }
+                    if ("text".equals(subprotocol)) {
+                        response.setAcceptedSubProtocol(subprotocol);
+//                        return textEcho;
+                        // this will create a new instance for each connection
+                        return new WebSocketProxySocket(prefix, proxyTo, connectionManager);
+                    }
+                }
+
+                // No valid subprotocol in request, ignore the request
+                return null;
+
             }
         });
     }
