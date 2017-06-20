@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 import javax.websocket.CloseReason;
 import javax.websocket.CloseReason.CloseCodes;
 
+import com.company.app.WebSocketProxyBinarySocket;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;

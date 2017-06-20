@@ -1,35 +1,26 @@
-package fi.csc.chipster.proxy;
+package com.company.app;
 
+import fi.csc.chipster.proxy.WebSocketProxyServlet;
+import fi.csc.chipster.proxy.WebSocketProxySocket;
+
+import javax.websocket.*;
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
-import javax.websocket.CloseReason;
-import javax.websocket.Endpoint;
-import javax.websocket.EndpointConfig;
-import javax.websocket.MessageHandler;
-import javax.websocket.Session;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 /**
- * Client side of the websocket proxy
- * <p>
- * Based on the Java WebSocket standard JSR 356.
  *
- * @author klemela
  */
-public class WebSocketProxyClient extends Endpoint {
+public class WebSocketProxyBinaryClient extends Endpoint {
 
     // TODO replace on lombok
 //	private static final Logger logger = LogManager.getLogger();
 
-    private WebSocketProxySocket proxySocket;
+    private WebSocketProxyBinarySocket proxySocket;
     private Session clientSession;
     private String targetUri;
     private CountDownLatch connectLatch;
 
-    public WebSocketProxyClient(WebSocketProxySocket jettyWebSocketSourceEndpoint, CountDownLatch openLatch, String targetUri) {
+    public WebSocketProxyBinaryClient(WebSocketProxyBinarySocket jettyWebSocketSourceEndpoint, CountDownLatch openLatch, String targetUri) {
         this.proxySocket = jettyWebSocketSourceEndpoint;
         this.connectLatch = openLatch;
         this.targetUri = targetUri;
@@ -63,6 +54,16 @@ public class WebSocketProxyClient extends Endpoint {
     public void sendText(String message) {
         try {
             clientSession.getBasicRemote().sendText(message);
+        } catch (IOException e) {
+//			logger.error("failed to send a message to " + targetUri, e);
+            proxySocket.closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
+            closeClientSession(WebSocketProxyServlet.toCloseReason(e));
+        }
+    }
+
+    public void sendBinary(byte[] arg0, int a1, int a2){
+        try {
+            clientSession.getBasicRemote().sendText(null);
         } catch (IOException e) {
 //			logger.error("failed to send a message to " + targetUri, e);
             proxySocket.closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
