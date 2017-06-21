@@ -1,7 +1,6 @@
 package com.company.app;
 
 import fi.csc.chipster.proxy.WebSocketProxyServlet;
-import fi.csc.chipster.proxy.WebSocketProxySocket;
 
 import javax.websocket.*;
 import java.io.IOException;
@@ -31,10 +30,10 @@ public class WebSocketProxyBinaryClient extends Endpoint {
     public void onOpen(Session targetSession, EndpointConfig config) {
         this.clientSession = targetSession;
 
-        targetSession.addMessageHandler(new MessageHandler.Whole<String>() {
+        targetSession.addMessageHandler(new MessageHandler.Whole<ByteBuffer>() {
             @Override
-            public void onMessage(String message) {
-                proxySocket.sendText(message);
+            public void onMessage(ByteBuffer message) {
+                proxySocket.sendByteBuffer(message);
             }
         });
         connectLatch.countDown();
@@ -74,6 +73,14 @@ public class WebSocketProxyBinaryClient extends Endpoint {
      */
 //    void onWebSocketBinary(byte payload[], int offset, int len);
     public void sendBinary(byte[] arg0, int start, int byteCount){
+
+        System.out.println("\n\n" +
+                "" +
+                "SEND BYTES #2" +
+                "" +
+                "" +
+                "\n\n\n");
+
         try {
             clientSession.getBasicRemote().sendBinary(ByteBuffer.wrap(arg0, start, byteCount));
         } catch (IOException e) {

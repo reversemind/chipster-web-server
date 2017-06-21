@@ -17,6 +17,7 @@ import javax.ws.rs.core.UriBuilder;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -101,14 +102,17 @@ public class WebSocketProxyBinarySocket extends WebSocketAdapter {
         URI requestUri = sourceSession.getUpgradeRequest().getRequestURI();
         String requestPath = requestUri.getPath();
 
-        if (!requestPath.startsWith(prefix + "/")) {
-            throw new IllegalArgumentException("path " + requestPath + " doesn't start with prefix " + prefix);
-        } else {
-            requestPath = requestPath.replaceFirst(prefix + "/", "");
-        }
+        System.out.println("\n\nrequestPath:" + requestPath);
 
+//        if (!requestPath.startsWith(prefix + "/")) {
+//            throw new IllegalArgumentException("path " + requestPath + " doesn't start with prefix " + prefix);
+//        } else {
+//            requestPath = requestPath.replaceFirst(prefix + "/", "");
+//        }
+
+        requestPath = requestPath.replaceFirst(prefix + "/", "");
         UriBuilder targetUriBuilder = UriBuilder.fromUri(proxyTo);
-        targetUriBuilder.path(requestPath);
+//        targetUriBuilder.path(requestPath);
         targetUriBuilder.replaceQuery(requestUri.getQuery());
 
         return targetUriBuilder.build().toString();
@@ -126,6 +130,24 @@ public class WebSocketProxyBinarySocket extends WebSocketAdapter {
             proxyClient.closeClientSession(WebSocketProxyServlet.toCloseReason(e));
             closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
         }
+    }
+
+    public void sendByteBuffer(ByteBuffer message){
+
+        System.out.println("\n\n" +
+                "" +
+                "SEND BYTES #1" +
+                "" +
+                "" +
+                "\n\n\n");
+
+            try {
+                socketSession.getRemote().sendBytes(message);
+            } catch (IOException e) {
+//			logger.error("failed to send a message", e);
+                proxyClient.closeClientSession(WebSocketProxyServlet.toCloseReason(e));
+                closeSocketSession(WebSocketProxyServlet.toCloseReason(e));
+            }
     }
 
     /**
