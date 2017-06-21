@@ -96,9 +96,11 @@ public class ConnectionManager {
     }
 
     public void removeConnection(Connection connection) {
-        get(connection.getRoute()).removeConnection(connection);
-        if (listener != null) {
-            listener.connectionRemoved(connection);
+        if(connection != null){
+            get(connection.getRoute()).removeConnection(connection);
+            if (listener != null) {
+                listener.connectionRemoved(connection);
+            }
         }
     }
 
