@@ -1,5 +1,6 @@
 package com.company.app.model;
 
+
 public class Greeting {
 
     private String content;
