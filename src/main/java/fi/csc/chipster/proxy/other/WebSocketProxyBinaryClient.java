@@ -1,4 +1,4 @@
-package com.company.app;
+package fi.csc.chipster.proxy.other;
 
 import fi.csc.chipster.proxy.WebSocketProxyServlet;
 

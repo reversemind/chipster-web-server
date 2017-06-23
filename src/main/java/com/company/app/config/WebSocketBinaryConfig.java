@@ -15,25 +15,26 @@ import java.io.IOException;
 /**
  *
  */
-@Configuration
-@EnableWebSocket
-public class WebSocketBinaryConfig implements WebSocketConfigurer {
-
-    @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new BinaryHandler(), "/binary").withSockJS();
-    }
-
-    @Component
-    public static class BinaryHandler extends BinaryWebSocketHandler {
-        public void handleBinaryMessage(WebSocketSession session, BinaryMessage message) {
-            try {
-                session.sendMessage(new BinaryMessage("123".getBytes()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//@Configuration
+//@EnableWebSocket
+public class WebSocketBinaryConfig {
+//        implements WebSocketConfigurer {
+//
+//    @Override
+//    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+////        registry.addHandler(new BinaryHandler(), "/binary").withSockJS();
+//    }
+////
+////    @Component
+////    public static class BinaryHandler extends BinaryWebSocketHandler {
+////        public void handleBinaryMessage(WebSocketSession session, BinaryMessage message) {
+////            try {
+////                session.sendMessage(new BinaryMessage("123".getBytes()));
+////            } catch (IOException e) {
+////                e.printStackTrace();
+////            }
+////        }
+////    }
 
 }
 

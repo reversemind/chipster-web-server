@@ -1,9 +1,7 @@
-package com.company.app;
+package fi.csc.chipster.proxy.other;
 
 import fi.csc.chipster.proxy.ConnectionManager;
-import fi.csc.chipster.proxy.WebSocketProxyClient;
 import fi.csc.chipster.proxy.WebSocketProxyServlet;
-import fi.csc.chipster.proxy.WebSocketProxySocket;
 import fi.csc.chipster.proxy.model.Connection;
 import fi.csc.chipster.proxy.model.Route;
 import org.eclipse.jetty.websocket.api.Session;
@@ -103,20 +101,43 @@ public class WebSocketProxyBinarySocket extends WebSocketAdapter {
         String requestPath = requestUri.getPath();
 
         System.out.println("\n\nrequestPath:" + requestPath);
+        System.out.println("\n\nprefix + \"/\":" + prefix + "/");
+        System.out.println("\n\nis starts :" + !requestPath.startsWith(prefix + "/"));
 
 //        if (!requestPath.startsWith(prefix + "/")) {
-//            throw new IllegalArgumentException("path " + requestPath + " doesn't start with prefix " + prefix);
-//        } else {
-//            requestPath = requestPath.replaceFirst(prefix + "/", "");
-//        }
+        if (!requestPath.startsWith(prefix)) {
+            throw new IllegalArgumentException("path " + requestPath + " doesn't start with prefix " + prefix);
+        } else {
+            requestPath = requestPath.replaceFirst(prefix + "/", "");
+        }
 
-        requestPath = requestPath.replaceFirst(prefix + "/", "");
         UriBuilder targetUriBuilder = UriBuilder.fromUri(proxyTo);
-//        targetUriBuilder.path(requestPath);
+        targetUriBuilder.path(requestPath);
         targetUriBuilder.replaceQuery(requestUri.getQuery());
 
         return targetUriBuilder.build().toString();
     }
+
+//    private String getTargetUri(Session sourceSession) {
+//
+//        URI requestUri = sourceSession.getUpgradeRequest().getRequestURI();
+//        String requestPath = requestUri.getPath();
+//
+//        System.out.println("\n\nrequestPath:" + requestPath);
+//
+////        if (!requestPath.startsWith(prefix + "/")) {
+////            throw new IllegalArgumentException("path " + requestPath + " doesn't start with prefix " + prefix);
+////        } else {
+////            requestPath = requestPath.replaceFirst(prefix + "/", "");
+////        }
+//
+//        requestPath = requestPath.replaceFirst(prefix + "/", "");
+//        UriBuilder targetUriBuilder = UriBuilder.fromUri(proxyTo);
+////        targetUriBuilder.path(requestPath);
+//        targetUriBuilder.replaceQuery(requestUri.getQuery());
+//
+//        return targetUriBuilder.build().toString();
+//    }
 
     public void closeSocketSession(CloseReason closeReason) {
         socketSession.close(closeReason.getCloseCode().getCode(), closeReason.getReasonPhrase());
