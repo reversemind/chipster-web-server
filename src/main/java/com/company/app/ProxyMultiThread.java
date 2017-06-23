@@ -11,7 +11,7 @@ public class ProxyMultiThread {
         try {
 
             // and the local port that we listen for connections on
-            String host = Constants.host;
+            String host = "";//Constants.host;
 
             int remoteport = 6080;//Integer.parseInt(args[1]);
             int localport = 8080;//Integer.parseInt(args[2]);
