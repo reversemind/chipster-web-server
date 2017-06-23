@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 import javax.websocket.CloseReason;
 import javax.websocket.CloseReason.CloseCodes;
 
+import fi.csc.chipster.proxy.other.WebSocketProxyBinarySocket;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeRequest;
 import org.eclipse.jetty.websocket.servlet.ServletUpgradeResponse;
 import org.eclipse.jetty.websocket.servlet.WebSocketCreator;
@@ -38,8 +39,55 @@ public class WebSocketProxyServlet extends WebSocketServlet {
         factory.setCreator(new WebSocketCreator() {
 
             @Override
-            public Object createWebSocket(ServletUpgradeRequest req, ServletUpgradeResponse resp) {
-                // this will create a new instance for each connection
+            public Object createWebSocket(ServletUpgradeRequest request, ServletUpgradeResponse response) {
+
+                System.out.println("\n\n===================================");
+                System.out.println("headers:" + request.getHeaders());
+                System.out.println("protocols:" + request.getSubProtocols());
+                System.out.println("maps:" + request.getCookies());
+                System.out.println("path:" + request.getRequestPath());
+                System.out.println("\n\n===================================");
+
+                for (String subprotocol : request.getSubProtocols()) {
+                    if ("binary".equals(subprotocol)) {
+
+                        System.out.println("\n\n ##^^^ -- binary ---\n\n");
+
+                        response.setAcceptedSubProtocol(subprotocol);
+                        // this will create a new instance for each connection
+                        return new WebSocketProxyBinarySocket(prefix, proxyTo, connectionManager);
+//                        return binaryEcho;
+                    }
+
+                    if ("base64".equals(subprotocol)) {
+
+                        System.out.println("\n\n ##^^^ -- base64 ---\n\n");
+
+                        response.setAcceptedSubProtocol(subprotocol);
+//                        return textEcho;
+                        // this will create a new instance for each connection
+                        return new WebSocketProxySocket(prefix, proxyTo, connectionManager);
+                    }
+
+                    if ("text".equals(subprotocol)) {
+
+                        System.out.println("\n\n ##^^^ -- text ---\n\n");
+
+                        response.setAcceptedSubProtocol(subprotocol);
+//                        return textEcho;
+                        // this will create a new instance for each connection
+                        return new WebSocketProxySocket(prefix, proxyTo, connectionManager);
+                    }
+                }
+
+//                // No valid subprotocol in request, ignore the request
+//                return null;
+//
+//
+
+
+                System.out.println("\n\n ##^^^ -- default - text ---\n\n");
+//                // this will create a new instance for each connection
                 return new WebSocketProxySocket(prefix, proxyTo, connectionManager);
             }
         });
