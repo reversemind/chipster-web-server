@@ -11,6 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.Servlet;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jetty.jmx.MBeanContainer;
@@ -48,6 +50,8 @@ import fi.csc.chipster.proxy.model.RouteStats;
  *
  * @author klemela
  */
+@Getter
+@Setter
 public class ProxyServer {
 
     // TODO replace on lombok
@@ -85,6 +89,16 @@ public class ProxyServer {
 
         proxy.startServer();
 //    	logger.info("proxy up and running");
+    }
+
+    public ProxyServer() {
+        this.connectionManager = new ConnectionManager();
+        this.connectionManager.setListener(new ConnectionListener() {
+            @Override
+            public void connectionRemoved(Connection connection) {
+                removeUnusedServlets();
+            }
+        });
     }
 
     public ProxyServer(URI baseUri) {

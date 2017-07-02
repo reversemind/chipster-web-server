@@ -1,0 +1,7 @@
+server:
+    port: 18181
+
+#proxy:
+#    solr:
+#        servlet_url: /proxy/*
+#        target_url: https://yandex.ru/pogoda/moscow

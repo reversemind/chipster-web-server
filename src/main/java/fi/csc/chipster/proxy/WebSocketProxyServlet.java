@@ -55,7 +55,7 @@ public class WebSocketProxyServlet extends WebSocketServlet {
 
                         response.setAcceptedSubProtocol(subprotocol);
                         // this will create a new instance for each connection
-                        return new WebSocketProxyBinarySocket(prefix, proxyTo, connectionManager);
+                        return new fi.csc.chipster.proxy.other.WebSocketProxyBinarySocket(prefix, proxyTo, connectionManager);
 //                        return binaryEcho;
                     }
 
