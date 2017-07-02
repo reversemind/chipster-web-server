@@ -41,6 +41,8 @@ public class WebSocketProxyServlet extends WebSocketServlet {
             @Override
             public Object createWebSocket(ServletUpgradeRequest request, ServletUpgradeResponse response) {
 
+                System.out.printf("request.getSession():" + request.getSession());
+
                 System.out.println("\n\n===================================");
                 System.out.println("headers:" + request.getHeaders());
                 System.out.println("protocols:" + request.getSubProtocols());
@@ -55,7 +57,7 @@ public class WebSocketProxyServlet extends WebSocketServlet {
 
                         response.setAcceptedSubProtocol(subprotocol);
                         // this will create a new instance for each connection
-                        return new fi.csc.chipster.proxy.other.WebSocketProxyBinarySocket(prefix, proxyTo, connectionManager);
+                        return new fi.csc.chipster.proxy.other.WebSocketProxyBinarySocket(prefix, proxyTo, connectionManager, request.getSession());
 //                        return binaryEcho;
                     }
 

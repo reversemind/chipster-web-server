@@ -1,6 +1,7 @@
 package fi.csc.chipster.proxy;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.inject.Singleton;
 import javax.servlet.AsyncEvent;
@@ -45,6 +46,12 @@ public class HttpProxyServlet extends ProxyServlet.Transparent {
         connection.setMethod(request.getMethod());
 
         connectionManager.addConnection(connection);
+
+
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while(headerNames.hasMoreElements()){
+            System.out.println("==== header:" + request.getHeader(headerNames.nextElement()));
+        }
 
         // the AsyncListener can be added only after the ProxyServlet.service() has called startAsync()
         request.getAsyncContext().addListener(new AsyncListener() {

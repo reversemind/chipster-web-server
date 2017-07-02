@@ -11,6 +11,7 @@ import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 import org.glassfish.tyrus.client.ClientManager;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.ClientEndpointConfig;
 import javax.websocket.CloseReason;
 import javax.websocket.DeploymentException;
@@ -41,12 +42,14 @@ public class WebSocketProxyBinarySocket extends WebSocketAdapter {
 
     private ConnectionManager connectionManager;
 
+    private HttpSession httpSession;
     private Connection connection;
 
-    public WebSocketProxyBinarySocket(String prefix, String proxyTo, ConnectionManager connectionManager) {
+    public WebSocketProxyBinarySocket(String prefix, String proxyTo, ConnectionManager connectionManager, HttpSession httpSession) {
         this.prefix = prefix;
         this.proxyTo = proxyTo;
         this.connectionManager = connectionManager;
+        this.httpSession = httpSession;
     }
 
     @Override
@@ -144,7 +147,9 @@ public class WebSocketProxyBinarySocket extends WebSocketAdapter {
 
                         System.out.println("////////////////////////////////");
                         System.out.println("inner headers:" + headers);
-
+                        System.out.println("outerHeaders headers:" + __headers);
+                        System.out.println("httpSession:" +  httpSession.getId());
+                        System.out.println("httpSession token:" +  httpSession.getAttribute("TOKEN"));
 
                         List<String> cookieList = headers.get("Cookie");
                         if (null == cookieList) {
