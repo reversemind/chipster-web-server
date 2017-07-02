@@ -117,16 +117,6 @@ public class ProxyServletConfig implements EnvironmentAware, ServletContextIniti
         serviceServletProxy5.setInitParameter("prefix", "/" + "core");
         serviceServletProxy5.setInitParameter("proxyTo", "http://ux64:6080/core");
 
-
-//        ServletRegistration.Dynamic serviceServletProxy6 = servletContext.addServlet("serviceServletProxy6", new HttpProxyServlet(proxyServer.getConnectionManager()));
-//
-//        serviceServletProxy6.addMapping("/code/util/*");
-//        serviceServletProxy6.setAsyncSupported(true);
-//        serviceServletProxy6.setLoadOnStartup(2);
-//
-//        serviceServletProxy6.setInitParameter("prefix", "/" + "core/util");
-//        serviceServletProxy6.setInitParameter("proxyTo", "http://ux64:6080/core/util");
-
     }
 
     @Override
